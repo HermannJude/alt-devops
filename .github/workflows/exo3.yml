@@ -31,7 +31,7 @@ jobs:
 
       - name: Healthcheck
         run: |
-          sleep 10 # Wait for nextcloud to be up
+          sleep 10 # Wait for mattermost to be up
           curl -f http://localhost:8065 || exit 1
     
       - name: Shut down compose

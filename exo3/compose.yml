@@ -15,6 +15,8 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    networks:
+      - db_net
 
   postgres:
     image: postgres:18.4
@@ -29,6 +31,12 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+    networks:
+      - db_net
+
+networks:
+  db_net:
+    driver: bridge
 
 volumes:
   mattermost_data:
