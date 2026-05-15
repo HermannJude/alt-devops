@@ -6,3 +6,4 @@
 - Set `MYSQL_ROOT_PASSWORD` in the `db` service which was missing and is required for the MySQL image to start
 - Port on MySQL is not needed as the services will be able to communicate internally
 - Removed `PMA_USER` and `PMA_PASSWORD` to open the login form and avoid intrusion issues.
+- Added healtchecks and made `depends_on` conditional
