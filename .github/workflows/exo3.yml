@@ -1,0 +1,39 @@
+name: Exo3
+
+on:
+  push:
+    branches: [ main ]
+    paths: 
+      - 'exo3/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: exo3
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Add .env file
+        run: |
+          echo "POSTGRES_HOST=postgres" >> .env
+          echo "POSTGRES_USER=mattermost" >> .env
+          echo "POSTGRES_PASSWORD=password" >> .env
+          echo "POSTGRES_DB=mattermost" >> .env
+
+      - name: Bring up compose
+        run: |
+          docker compose -f compose.yml up -d
+
+      - name: Healthcheck
+        run: |
+          sleep 10 # Wait for nextcloud to be up
+          curl -f http://localhost:8065 || exit 1
+    
+      - name: Shut down compose
+        run: |
+          docker compose -f compose.yml down
