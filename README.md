@@ -4,7 +4,7 @@ Each exercise has a `README.md` explaining the fixes applied.
 
 ---
 
-## 🚀 Testing Procedure
+## Testing Procedure
 
 ### Local Testing
 
@@ -41,7 +41,7 @@ Each exercise has a GitHub Actions workflow that automatically tests the stack o
 
 ### Workflow Structure
 
-Each workflow (`exo1.yml`, `exo2.yml`, `exo3.yml`):
+Each workflow (`exo1.yml`, `exo2.yml`, `exo3.yml`, `exo4.yml`):
 
 1. **Checkout**: Retrieves the code.
 2. **Prepare .env**: Creates the configuration file with environment variables.
@@ -78,7 +78,8 @@ alt-devops/
 │   └── workflows/
 │       ├── exo1.yml         # CI test for exercise 1
 │       ├── exo2.yml         # CI test for exercise 2
-│       └── exo3.yml         # CI test for exercise 3
+│       ├── exo3.yml         # CI test for exercise 3
+│       └── exo4.yml         # CI test for exercise 4
 ├── exo1/
 │   ├── compose.yml          # Docker Compose configuration
 │   ├── .env                 # Environment variables
@@ -88,6 +89,10 @@ alt-devops/
 │   ├── .env
 │   └── README.md
 └── exo3/
+    ├── compose.yml
+    ├── .env
+    └── README.md
+    exo4/
     ├── compose.yml
     ├── .env
     └── README.md
