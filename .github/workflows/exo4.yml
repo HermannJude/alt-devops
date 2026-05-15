@@ -1,12 +1,11 @@
-name: Exo1
+name: Exo3
 
 on:
   push:
     branches: [ main ]
     paths: 
-      - 'exo1/**'
+      - 'exo4/**'
   workflow_dispatch:
-    
 
 jobs:
   test:
@@ -14,11 +13,11 @@ jobs:
 
     defaults:
       run:
-        working-directory: exo1
+        working-directory: exo4
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Add .env file
         run: |
@@ -30,9 +29,8 @@ jobs:
 
       - name: Healthcheck
         run: |
-          sleep 10 # Wait for the services to be up
-          curl -f http://localhost:8080 || exit 1
-          curl -f http://localhost:8081 || exit 1
+          sleep 120 # Wait for Elasticsearch to be up
+          curl -f http://localhost:9200/_cluster/health || exit 1
     
       - name: Shut down compose
         run: |

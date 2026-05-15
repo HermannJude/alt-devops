@@ -21,10 +21,7 @@ jobs:
 
       - name: Add .env file
         run: |
-          echo "POSTGRES_HOST=postgres" >> .env
-          echo "POSTGRES_USER=mattermost" >> .env
-          echo "POSTGRES_PASSWORD=password" >> .env
-          echo "POSTGRES_DB=mattermost" >> .env
+          cp .env.example .env
 
       - name: Bring up compose
         run: |
