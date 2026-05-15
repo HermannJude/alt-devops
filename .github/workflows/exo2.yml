@@ -5,6 +5,7 @@ on:
     branches: [ main ]
     paths: 
       - 'exo2/**'
+  workflow_dispatch:
 
 jobs:
   test:
