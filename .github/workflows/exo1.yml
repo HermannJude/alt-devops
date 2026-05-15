@@ -1,0 +1,40 @@
+name: Tests
+
+on:
+  push:
+    branches: [ main ]
+    paths: 
+      - 'exo1/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: exo1
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Add .env file
+        run: |
+          echo "DB_HOST=db" >> .env
+          echo "DB_USER=wordpress" >> .env
+          echo "DB_PASSWORD=wordpress" >> .env
+          echo "DB_NAME=wordpress" >> .env
+
+      - name: Bring up compose
+        run: |
+          docker compose -f compose.yml up -d
+
+      - name: Healthcheck
+        run: |
+          sleep 10 # Wait for the services to be up
+          curl -f http://localhost:8080 || exit 1
+          curl -f http://localhost:8081 || exit 1
+    
+      - name: Shut down compose
+        run: |
+          docker compose -f compose.yml down
