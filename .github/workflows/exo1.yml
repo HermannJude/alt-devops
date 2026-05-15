@@ -24,6 +24,7 @@ jobs:
           echo "DB_USER=wordpress" >> .env
           echo "DB_PASSWORD=wordpress" >> .env
           echo "DB_NAME=wordpress" >> .env
+          echo "DB_ROOT_PASSWORD=rootpassword" >> .env
 
       - name: Bring up compose
         run: |
